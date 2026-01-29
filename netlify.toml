@@ -1,0 +1,11 @@
+[build]
+  # No build command needed since we pushed the pre-obfuscated/built files
+  command = "" 
+  # Publish the root directory
+  publish = "."
+
+# Ensure 404 page works correctly
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
