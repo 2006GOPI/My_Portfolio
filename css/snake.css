@@ -1,0 +1,256 @@
+/* Snake Game Modal Styles */
+:root {
+    --snake-primary: #FF6B6B;
+    --snake-secondary: #4ECDC4;
+    --snake-accent: #FFE66D;
+    --snake-text: #2C3E50;
+    --snake-bg: #F7F9FC;
+    --snake-grid: #E0E6ED;
+}
+
+.snake-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.snake-modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.snake-game-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 4px solid white;
+    outline: 8px solid rgba(255, 255, 255, 0.2);
+}
+
+.snake-modal-overlay.active .snake-game-container {
+    transform: scale(1);
+}
+
+.snake-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.snake-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--snake-primary);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.snake-score-board {
+    background: var(--snake-bg);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 700;
+    color: var(--snake-text);
+    display: flex;
+    gap: 1rem;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.score-item span {
+    color: var(--snake-secondary);
+}
+
+.game-board-wrapper {
+    background: #eef2f5;
+    padding: 1rem;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    background-image:
+        linear-gradient(rgba(78, 205, 196, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(78, 205, 196, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: white;
+    border: 2px solid var(--snake-grid);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.snake-head {
+    background-color: var(--snake-secondary);
+    border-radius: 4px;
+    z-index: 2;
+}
+
+.snake-body {
+    background-color: #89e2dd;
+    border-radius: 2px;
+    transform: scale(0.9);
+}
+
+.food {
+    background-color: var(--snake-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--snake-primary);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.9);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(0.9);
+    }
+}
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.snake-btn {
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.snake-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.btn-start {
+    background-color: var(--snake-secondary);
+    color: white;
+}
+
+.btn-start:hover {
+    background-color: #3dbdb5;
+}
+
+.btn-restart {
+    background-color: var(--snake-primary);
+    color: white;
+}
+
+.btn-restart:hover {
+    background-color: #ed5e5e;
+}
+
+.snake-instructions {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 2px dashed var(--snake-grid);
+    color: #95a5a6;
+    font-size: 0.9rem;
+}
+
+.close-modal {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: var(--snake-text);
+    transition: all 0.2s;
+}
+
+.close-modal:hover {
+    transform: rotate(90deg);
+    background: var(--snake-primary);
+    color: white;
+}
+
+/* Mobile Controls */
+.mobile-controls {
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 1rem;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.d-pad-btn {
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid var(--snake-grid);
+    border-radius: 12px;
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: var(--snake-text);
+}
+
+.d-pad-btn:active {
+    background: var(--snake-secondary);
+    color: white;
+    border-color: var(--snake-secondary);
+}
+
+@media (max-width: 768px) {
+    .snake-game-container {
+        padding: 1.5rem;
+        width: 95%;
+    }
+
+    .mobile-controls {
+        display: grid;
+    }
+
+    .snake-instructions {
+        display: none;
+    }
+}

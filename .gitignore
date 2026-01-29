@@ -1,0 +1,53 @@
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+.sublime-project
+.sublime-workspace
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary Files
+*.tmp
+*.temp
+.cache/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Build/Distribution Folders (if using build tools)
+dist/
+build/
+
+# Dependency Directories (if adding Node.js)
+node_modules/
+
+# Optional: Keep personal images private during development
+# images/*.jpg
+# images/*.png
+# Uncomment above if you don't want to commit personal photos
+
+# Optional: Keep resume private
+# assets/resume.pdf
+# Uncomment if you don't want your resume in the repo
