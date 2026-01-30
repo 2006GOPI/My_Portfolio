@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gopiv.netlify.app/sitemap.xml

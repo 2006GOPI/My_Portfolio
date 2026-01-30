@@ -53,6 +53,25 @@ def bundle_assets(html_content, base_dir):
 
     html_content = re.sub(r'<script\s+src="([^"]+)"\s*></script>', replace_js, html_content)
     
+    
+    # Inject Security Script (Disable Right-Click, F12, Ctrl+Shift+I, etc.)
+    security_script = """
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) { return false; }
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; }
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { return false; }
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; }
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; }
+        }
+    </script>
+    """
+    
+    # Insert before </head>
+    if "</head>" in html_content:
+        html_content = html_content.replace("</head>", f"{security_script}\n</head>")
+        
     return html_content
 
 def obfuscate_html(html_content):
@@ -120,6 +139,7 @@ def main():
     print(f"Reading from: {source_file}")
     
     original_html = read_file(source_file)
+    print(f"DEBUG: Source file read. Content start: {original_html[:300]}")
     
     # 3. Bundle Assets
     bundled_html = bundle_assets(original_html, PROJECT_DIR)

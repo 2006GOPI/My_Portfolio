@@ -1,12 +1,14 @@
 // Service Worker for Portfolio Website
 // Provides offline capability and caching
 
-const CACHE_NAME = 'portfolio-v1';
+const CACHE_NAME = 'portfolio-v2';
 const urlsToCache = [
     '/',
     '/index.html',
     '/css/style.css',
+    '/css/snake.css',
     '/js/main.js',
+    '/js/snake.js',
     '/404.html'
 ];
 
@@ -32,7 +34,7 @@ self.addEventListener('fetch', (event) => {
                 }
                 return fetch(event.request);
             }
-        )
+            )
     );
 });
 
